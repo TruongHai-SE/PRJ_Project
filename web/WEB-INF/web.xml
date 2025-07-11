@@ -20,6 +20,10 @@
         <servlet-name>AdvertisementController</servlet-name>
         <servlet-class>controller.AdvertisementController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookDetailController</servlet-name>
+        <servlet-class>controller.BookDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AdvertisementController</servlet-name>
         <url-pattern>/AdvertisementController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookDetailController</servlet-name>
+        <url-pattern>/BookDetailController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

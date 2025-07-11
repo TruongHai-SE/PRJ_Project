@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpSession;
  * @author xuann
  */
 public class MainController extends HttpServlet {
+
     private static final String HOME_PAGE = "index.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,6 +42,9 @@ public class MainController extends HttpServlet {
                     break;
                 case "search":
                     url = "SearchBookController";
+                    break;
+                case "BookDetail":
+                    url = "BookDetailController";
                     break;
                 case "Delete":
                     url = "DeleteController";
@@ -67,7 +71,7 @@ public class MainController extends HttpServlet {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -75,10 +79,10 @@ public class MainController extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
         out.print("<html><body>");
-        
+
         out.print("</body></html>");
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -86,10 +90,10 @@ public class MainController extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setCharacterEncoding("UTF-8");
         out.print("<html><body>");
-        
+
         out.print("</body></html>");
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Short description";
