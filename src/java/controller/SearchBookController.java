@@ -28,12 +28,13 @@ public class SearchBookController extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("searchKey");
-        
+
         if (title != null && !title.isEmpty()) {
 
             // create cookie and set time it alive
 //            cookies(request, response, title);
-            Cookie newCookie = new Cookie("searchHistory", title);
+            String encodedHistory = URLEncoder.encode(title, "UTF-8");
+            Cookie newCookie = new Cookie("searchHistory", encodedHistory);
             newCookie.setMaxAge(86400);
             response.addCookie(newCookie);
 
@@ -102,7 +103,6 @@ public class SearchBookController extends HttpServlet {
 //        e.printStackTrace(); // Có thể log bằng logger thay vì in ra console
 //    }
 //}
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

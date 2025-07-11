@@ -25,7 +25,7 @@ public class BookDAO {
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                String sql = "select id,title,author,isbn,category,published_year,total_copies,available_copies,status,url\n"
+                String sql = "select *\n"
                         + "from dbo.books\n"
                         + "where title like ? "
                         + "or author like ? "
@@ -47,7 +47,8 @@ public class BookDAO {
                         int avaibleCopy = table.getInt("available_copies");
                         String status = table.getString("status");
                         String url = table.getString("url");
-                        Book b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url);
+                        String description = table.getString("description");
+                        Book b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url, description);
                         result.add(b);
                     }
                 }
@@ -82,6 +83,7 @@ public class BookDAO {
                         + "      ,[available_copies]\n"
                         + "      ,[status]\n"
                         + "      ,[url]\n"
+                        + "      ,[description]\n"
                         + "  FROM [dbo].[books]\n"
                         + "  WHERE ID=?";
                 PreparedStatement st = cn.prepareStatement(sql);
@@ -97,7 +99,8 @@ public class BookDAO {
                     int avaibleCopy = table.getInt("available_copies");
                     String status = table.getString("status");
                     String url = table.getString("url");
-                    b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url);
+                    String description = table.getString("description");
+                    b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url, description);
                 }
             }
         } catch (Exception e) {
@@ -134,7 +137,8 @@ public class BookDAO {
                     int avaibleCopy = table.getInt("available_copies");
                     String status = table.getString("status");
                     String url = table.getString("url");
-                    Book b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url);
+                    String description = table.getString("description");
+                    Book b = new Book(id, title, author, isbn, category, year, total, avaibleCopy, status, url, description);
                     result.add(b);
                 }
             }
