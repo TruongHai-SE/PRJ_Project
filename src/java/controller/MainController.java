@@ -27,7 +27,7 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                url = HOME_PAGE;
+                url = "AdvertisementController";
             }
 //            your code here
             switch (action) {
@@ -50,7 +50,7 @@ public class MainController extends HttpServlet {
                     url = "DeleteController";
                     break;
                 case "AddHouse":
-                    url = "AddHouseController";
+                    url = "AddBookController";
                     break;
 //                case "ViewCart":
 //                    url = "ViewCartController";

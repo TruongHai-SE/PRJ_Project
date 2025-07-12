@@ -25,25 +25,24 @@ public class AdvertisementController extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
+        String currentSearch = null;
         BookDAO d = new BookDAO();
         ArrayList<Book> currentSearchList = new ArrayList<>();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if ("searchHistory".equalsIgnoreCase(cookie.getName())) {
-                    String currentSearch = cookie.getValue();
-                    currentSearchList = d.getBooksByTitle(currentSearch);
-
+                    currentSearch = cookie.getValue();
+                    break;
                 }
             }
         }
-        if (currentSearchList != null) {
-            request.setAttribute("searchHistory", currentSearchList);
-            request.getRequestDispatcher("advertisement.jsp").forward(request, response);
-        } else {
-            request.setAttribute("MSG", "Seach history not found");
-            request.getRequestDispatcher("advertisement.jsp").forward(request, response);
-        }
 
+        if (currentSearch != null) {
+            currentSearchList = d.getBooksByTitle(currentSearch);
+            request.setAttribute("recentSearch", currentSearchList);
+            
+        }
+        request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 

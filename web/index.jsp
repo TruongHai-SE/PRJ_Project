@@ -21,6 +21,7 @@
     <body style="margin: 100px 30px 10px 30px">
         <!-- Include header -->
         <jsp:include page="header.jsp" />
+       
 
         <c:if test="${not empty msg}">
             <div class="container" style="margin-top: 80px">

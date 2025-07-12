@@ -63,7 +63,7 @@
     <header class="header d-flex align-items-center justify-content-between fixed-top" style="padding: 8px 30px">
         <!-- Logo -->
         <div class="d-flex align-items-center">
-            <a href="index.jsp">
+            <a href="AdvertisementController">
                <img src="picture/FPT_EDUCATION.png" alt="Logo" style="height: 40px; margin-right: 15px;">
             </a>
 

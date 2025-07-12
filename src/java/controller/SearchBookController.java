@@ -35,7 +35,7 @@ public class SearchBookController extends HttpServlet {
 //            cookies(request, response, title);
             String encodedHistory = URLEncoder.encode(title, "UTF-8");
             Cookie newCookie = new Cookie("searchHistory", encodedHistory);
-            newCookie.setMaxAge(86400);
+            newCookie.setMaxAge(86400 * 7);
             response.addCookie(newCookie);
 
             BookDAO d = new BookDAO();
