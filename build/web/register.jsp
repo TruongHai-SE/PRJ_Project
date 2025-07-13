@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Register</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/frosted-glass.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/header.css">
 </head>
 <body class="register-page">

@@ -37,7 +37,7 @@ public class RegisterController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 // mang thoong tin dang nhap vao session de dang nhap luon
             } else {
-                request.setAttribute("error", "Somethings went wrong");
+                request.setAttribute("ERROR", "Somethings went wrong");
                 response.sendRedirect("mistake.jsp");
             }
 

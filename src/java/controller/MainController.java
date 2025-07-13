@@ -30,6 +30,9 @@ public class MainController extends HttpServlet {
                 case "Logout":
                     url = "LogoutController";
                     break;
+                case "ChangeProfile":
+                    url = "ChangeProfileController";
+                    break;
                 case "search":
                     url = "SearchBookController";
                     break;

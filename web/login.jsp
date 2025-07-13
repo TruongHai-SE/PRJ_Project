@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Login Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/frosted-glass.css">
+    <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
@@ -36,6 +36,7 @@
             <c:if test="${not empty requestScope.ERROR}">
                 <div class="alert alert-danger" role="alert">
                     ${requestScope.ERROR}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </c:if>
         </form>
