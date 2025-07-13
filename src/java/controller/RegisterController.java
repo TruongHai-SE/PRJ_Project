@@ -21,22 +21,23 @@ import jakarta.servlet.http.HttpSession;
 public class RegisterController extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String username = request.getParameter("name");
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        UserDAO userDao = new UserDAO();
-        User user = userDao.getUserByEmail(email);
+        UserDAO d = new UserDAO();
+        User user = d.getUserByEmail(email);
 
         if (user == null) {
-            int result = userDao.insertNewUser(username, email, password);
+            int result = d.insertNewUser(username, email, password);
 
             if (result == 1) {
                 request.setAttribute("msg", "Register succesfully");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 // mang thoong tin dang nhap vao session de dang nhap luon
             } else {
-                request.setAttribute("errro", "Somethings wrong");
+                request.setAttribute("error", "Somethings went wrong");
                 response.sendRedirect("mistake.jsp");
             }
 

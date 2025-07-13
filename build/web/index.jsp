@@ -13,15 +13,14 @@
     <head>
         <meta charset="UTF-8">
         <title>Home Page</title>
-        <!-- Bootstrap 5 CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     </head>
 
     <body style="margin: 100px 30px 10px 30px">
-        <!-- Include header -->
+        
         <jsp:include page="header.jsp" />
 
+        
         <c:if test="${not empty msg}">
             <div class="container" style="margin-top: 80px">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -31,18 +30,25 @@
             </div>
         </c:if>
 
-        <div class="ad">
+        
+        <div class="container text-center mt-4">
+            <c:choose>
+                <c:when test="${not empty sessionScope.loginedUser}">
+                    <h2>Welcome, ${sessionScope.loginedUser.name}!</h2>
+                    <p>Your email: ${sessionScope.loginedUser.email}</p>
+                </c:when>
+                <c:otherwise>
+                    <h2>Welcome to our library system!</h2>
+                    <p>Please <a href="login.jsp">login</a> to access more features.</p>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <!-- Advertisement -->
+        <div class="ad mt-5">
             <jsp:include page="advertisement.jsp" />
         </div>
 
-
-
-
-
-
-
-        <!-- Bootstrap 5 JS (bundle gồm cả Popper) -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
