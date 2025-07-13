@@ -19,6 +19,7 @@
     <body style="margin: 100px 30px 10px 30px">
         
         <jsp:include page="header.jsp" />
+       
 
         
         <c:if test="${not empty msg}">

@@ -19,8 +19,9 @@ public class Book {
    private int available_copies;
    private String status;
    private String url;
+   private String description;
 
-    public Book(int id, String title, String author, String isbn, String category, int published_year, int total_copies, int available_copies, String status, String url) {
+    public Book(int id, String title, String author, String isbn, String category, int published_year, int total_copies, int available_copies, String status, String url, String description) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -31,18 +32,10 @@ public class Book {
         this.available_copies = available_copies;
         this.status = status;
         this.url = url;
+        this.description = description;
     }
 
-    public Book(int id, String title, String author, String isbn, String category, int published_year, int total_copies, int available_copies, String status) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.isbn = isbn;
-        this.category = category;
-        this.published_year = published_year;
-        this.total_copies = total_copies;
-        this.available_copies = available_copies;
-        this.status = status;
+    public Book() {
     }
 
     public int getId() {
@@ -71,14 +64,6 @@ public class Book {
 
     public String getIsbn() {
         return isbn;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public void setIsbn(String isbn) {
@@ -124,5 +109,21 @@ public class Book {
     public void setStatus(String status) {
         this.status = status;
     }
-   
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 }

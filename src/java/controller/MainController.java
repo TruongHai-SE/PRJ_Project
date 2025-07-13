@@ -5,8 +5,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 
 public class MainController extends HttpServlet {
+
     private static final String HOME_PAGE = "index.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -16,39 +18,41 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                response.sendRedirect(url);
-            } else {
-                switch (action) {
-                    case "Login":
-                        url = "LoginController";
-                        break;
-                    case "register":
-                        url = "RegisterController";
-                        break;
-                    case "Logout":
-                        url = "LogoutController";
-                        break;
-                    case "search":
-                        url = "SearchBookController";
-                        break;
-                    case "Delete":
-                        url = "DeleteController";
-                        break;
-                    case "AddHouse":
-                        url = "AddHouseController";
-                        break;
-                    case "AddToCart":
-                        url = "AddtoCartController";
-                        break;
-                    case "Remove":
-                        url = "RemoveCartController";
-                        break;
-                    case "ChangeProfile":
-                        url = "ChangeProfileController";
-                        break;
-                    default:
-                        url = HOME_PAGE;
-                }
+                url = "AdvertisementController";
+            }
+            switch (action) {
+                case "Login":
+                    url = "LoginController";
+                    break;
+                case "register":
+                    url = "RegisterController";
+                    break;
+                case "Logout":
+                    url = "LogoutController";
+                    break;
+                case "search":
+                    url = "SearchBookController";
+                    break;
+                case "BookDetail":
+                    url = "BookDetailController";
+                    break;
+                case "Delete":
+                    url = "DeleteController";
+                    break;
+                case "AddHouse":
+                    url = "AddBookController";
+                    break;
+//                case "ViewCart":
+//                    url = "ViewCartController";
+//                    break;
+                case "AddToCart":
+                    url = "AddtoCartController";
+                    break;
+                case "Remove":
+                    url = "RemoveCartController";
+                    break;
+                default:
+                    throw new AssertionError();
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
@@ -66,7 +70,7 @@ public class MainController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
     }
 
     @Override

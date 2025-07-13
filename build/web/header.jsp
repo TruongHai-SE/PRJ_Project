@@ -60,8 +60,8 @@
     <header class="header d-flex align-items-center justify-content-between fixed-top" style="padding: 8px 30px">
         <!-- Logo -->
         <div class="d-flex align-items-center">
-            <a href="index.jsp">
-                <img src="picture/FPT_EDUCATION.png" alt="FPT Education Logo" style="height: 40px; margin-right: 15px;">
+            <a href="MainController">
+               <img src="picture/FPT_EDUCATION.png" alt="Logo" style="height: 40px; margin-right: 15px;">
             </a>
 
             <div class="dropdown me-2">
@@ -76,10 +76,8 @@
 
             <!-- Search -->
             <form action="MainController" method="post" class="search-box d-flex" style="margin: 0 150px">
-                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}" style="width: 400px">
-                <button class="btn btn-danger" type="submit" name="action" value="search" aria-label="Search">
-                    <i class="fas fa-search"></i>
-                </button>
+                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}" style="width: 400px; margin-right: 10px">
+                <button class="btn btn-danger" type="submit" name="action" value="search"><i class="fas fa-search"></i></button>
             </form>
         </div>
 
