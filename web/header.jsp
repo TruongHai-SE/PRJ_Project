@@ -10,54 +10,11 @@
     <title>Header</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .header {
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            padding: 8px 16px;
-            z-index: 1000;
-        }
-
-        .search-box {
-            flex-grow: 1;
-            display: flex;
-            max-width: 600px;
-        }
-
-        .search-box input {
-            border-top-left-radius: 8px;
-            border-bottom-left-radius: 8px;
-        }
-
-        .search-box button {
-            border-top-right-radius: 8px;
-            border-bottom-right-radius: 8px;
-        }
-
-        .icon-link {
-            color: #555;
-            text-decoration: none;
-            font-size: 0.9rem;
-            text-align: center;
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .icon-link i {
-            font-size: 1.2rem;
-            margin-right: 5px;
-        }
-
-        .dropdown-menu {
-            min-width: 10rem;
-        }
-    </style>
+    <link rel="stylesheet" href="css/header.css">
 </head>
 
 <body>
-    <header class="header d-flex align-items-center justify-content-between fixed-top" style="padding: 8px 30px">
+    <header class="header d-flex align-items-center justify-content-between fixed-top">
         <!-- Logo -->
         <div class="d-flex align-items-center">
             <a href="MainController">
@@ -75,8 +32,8 @@
             </div>
 
             <!-- Search -->
-            <form action="MainController" method="post" class="search-box d-flex" style="margin: 0 150px">
-                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}" style="width: 400px; margin-right: 10px">
+            <form action="MainController" method="post" class="search-box d-flex">
+                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}">
                 <button class="btn btn-danger" type="submit" name="action" value="search"><i class="fas fa-search"></i></button>
             </form>
         </div>
@@ -115,7 +72,6 @@
         </div>
     </header>
 
-    <!-- Bootstrap JS Bundle (include Popper) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
