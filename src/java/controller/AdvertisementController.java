@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import java.util.ArrayList;
+import java.net.URLDecoder;
 
 /**
  *
@@ -31,7 +32,7 @@ public class AdvertisementController extends HttpServlet {
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if ("searchHistory".equalsIgnoreCase(cookie.getName())) {
-                    currentSearch = cookie.getValue();
+                    currentSearch = URLDecoder.decode(cookie.getValue(), "UTF-8");
                     break;
                 }
             }

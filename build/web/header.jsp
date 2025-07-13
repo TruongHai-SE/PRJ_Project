@@ -79,7 +79,7 @@
 
             <!-- Search -->
             <form action="MainController" method="post" class="search-box d-flex" style="margin: 0 150px">
-                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}" style="width: 400px">
+                <input class="form-control" type="text" placeholder="Search" name="searchKey" value="${requestScope.searchKey}" style="width: 400px; margin-right: 10px">
                 <button class="btn btn-danger" type="submit" name="action" value="search"><i class="fas fa-search"></i></button>
             </form>
         </div>

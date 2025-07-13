@@ -31,7 +31,8 @@
         }
     </style>
 </head>
-<body>
+<body style="margin-top: 100px">
+    <jsp:include page="header.jsp" />
 <div class="container mt-5">
     <div class="row">
         <!-- Ảnh sách -->

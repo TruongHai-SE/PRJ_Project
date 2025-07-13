@@ -44,7 +44,7 @@
                         <td style="padding: 10px;">
                             <div style="display: flex; align-items: center; gap: 20px">
                                 <a href="MainController?action=BookDetail&bookId=${book.id}">
-                                    <img src="${book.url}" alt="Book image" width="150px" height="150px">
+                                    <img src="${book.url}" alt="Book image" width="100px" height="150px">
                                 </a>
 
                                 <div style="line-height: 1.85; font-size: 16px">
