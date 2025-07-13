@@ -23,6 +23,12 @@
                 <input type="password" name="password" placeholder=" " required>
                 <label>Enter your password</label>
             </div>
+            <c:if test="${not empty requestScope.ERROR}">
+                <div class="alert alert-danger" role="alert">
+                    ${requestScope.ERROR}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </c:if>
             <div class="forget">
                 <label>
                     <input type="checkbox" id="remember" name="remember"> Remember me
@@ -33,12 +39,7 @@
             <div class="login">
                 <p>Have no account? <a href="register.jsp">Register</a></p>
             </div>
-            <c:if test="${not empty requestScope.ERROR}">
-                <div class="alert alert-danger" role="alert">
-                    ${requestScope.ERROR}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            </c:if>
+            
         </form>
     </div>
 
