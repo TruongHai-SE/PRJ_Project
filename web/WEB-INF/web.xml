@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <!-- Servlet Definitions -->
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>
@@ -21,8 +22,21 @@
         <servlet-class>controller.AdvertisementController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeProfileController</servlet-name>
+        <servlet-class>controller.ChangeProfileController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>BookDetailController</servlet-name>
         <servlet-class>controller.BookDetailController</servlet-class>
+    </servlet>
+    <!-- Servlet Mappings -->
+    <servlet>
+        <servlet-name>LoginListener</servlet-name>
+        <servlet-class>myListener.LoginListener</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -45,15 +59,27 @@
         <url-pattern>/AdvertisementController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeProfileController</servlet-name>
+        <url-pattern>/change_profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>BookDetailController</servlet-name>
         <url-pattern>/BookDetailController</url-pattern>
     </servlet-mapping>
+    <!-- Session timeout -->
+    <servlet-mapping>
+        <servlet-name>LoginListener</servlet-name>
+        <url-pattern>/LoginListener</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
+    <!-- Welcome page -->
     <welcome-file-list>
-        <welcome-file>MainController</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
 </web-app>
