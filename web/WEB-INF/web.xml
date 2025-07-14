@@ -33,9 +33,19 @@
         <servlet-name>LogoutController</servlet-name>
         <servlet-class>controller.LogoutController</servlet-class>
     </servlet>
-    
     <!-- Servlet Mappings -->
-    
+    <servlet>
+        <servlet-name>BorrowBookController</servlet-name>
+        <servlet-class>controller.BorrowBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnBookController</servlet-name>
+        <servlet-class>controller.ReturnBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrowHistoryController</servlet-name>
+        <servlet-class>controller.BorrowHistoryController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -68,6 +78,18 @@
     <servlet-mapping>
         <servlet-name>LogoutController</servlet-name>
         <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowBookController</servlet-name>
+        <url-pattern>/BorrowBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnBookController</servlet-name>
+        <url-pattern>/ReturnBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowHistoryController</servlet-name>
+        <url-pattern>/BorrowHistoryController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

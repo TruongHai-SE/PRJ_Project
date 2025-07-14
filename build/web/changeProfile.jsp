@@ -9,8 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Change Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="register-page">
     <jsp:include page="header.jsp" />

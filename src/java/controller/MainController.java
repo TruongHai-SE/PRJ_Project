@@ -54,6 +54,15 @@ public class MainController extends HttpServlet {
                 case "Remove":
                     url = "RemoveCartController";
                     break;
+                case "Borrow":
+                    url = "BorrowBookController";
+                    break;
+                case "Return":
+                    url = "ReturnBookController";
+                    break;
+                case "BorrowHistory":
+                    url = "BorrowHistoryController";
+                    break;
                 default:
                     throw new AssertionError();
             }
