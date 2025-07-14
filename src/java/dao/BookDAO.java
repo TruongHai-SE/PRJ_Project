@@ -104,9 +104,13 @@ public class BookDAO {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         } finally {
-
+            try {
+                if (cn != null) cn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return b;

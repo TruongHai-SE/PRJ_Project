@@ -22,10 +22,6 @@
         <servlet-class>controller.AdvertisementController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LogoutController</servlet-name>
-        <servlet-class>controller.LogoutController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ChangeProfileController</servlet-name>
         <servlet-class>controller.ChangeProfileController</servlet-class>
     </servlet>
@@ -33,10 +29,22 @@
         <servlet-name>BookDetailController</servlet-name>
         <servlet-class>controller.BookDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutController</servlet-name>
+        <servlet-class>controller.LogoutController</servlet-class>
+    </servlet>
     <!-- Servlet Mappings -->
     <servlet>
-        <servlet-name>LoginListener</servlet-name>
-        <servlet-class>myListener.LoginListener</servlet-class>
+        <servlet-name>BorrowBookController</servlet-name>
+        <servlet-class>controller.BorrowBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReturnBookController</servlet-name>
+        <servlet-class>controller.ReturnBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrowHistoryController</servlet-name>
+        <servlet-class>controller.BorrowHistoryController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
@@ -59,12 +67,8 @@
         <url-pattern>/AdvertisementController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LogoutController</servlet-name>
-        <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>ChangeProfileController</servlet-name>
-        <url-pattern>/change_profile</url-pattern>
+        <url-pattern>/ChangeProfileController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BookDetailController</servlet-name>
@@ -72,8 +76,20 @@
     </servlet-mapping>
     <!-- Session timeout -->
     <servlet-mapping>
-        <servlet-name>LoginListener</servlet-name>
-        <url-pattern>/LoginListener</url-pattern>
+        <servlet-name>LogoutController</servlet-name>
+        <url-pattern>/LogoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowBookController</servlet-name>
+        <url-pattern>/BorrowBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnBookController</servlet-name>
+        <url-pattern>/ReturnBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowHistoryController</servlet-name>
+        <url-pattern>/BorrowHistoryController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

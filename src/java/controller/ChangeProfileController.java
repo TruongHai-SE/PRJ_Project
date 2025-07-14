@@ -28,7 +28,11 @@ public class ChangeProfileController extends HttpServlet {
         try {
             HttpSession session = request.getSession(false);
             if (session == null || session.getAttribute("loginedUser") == null) {
+
                 request.setAttribute("error", "Please login first");
+
+                request.setAttribute("ERROR", "Please login first");
+
                 request.getRequestDispatcher("login.jsp").forward(request, response);
                 return;
             }
@@ -48,19 +52,31 @@ public class ChangeProfileController extends HttpServlet {
 
             // Validate input
             if (name == null || name.trim().isEmpty()) {
+
                 request.setAttribute("error", "Name cannot be empty");
+
+                request.setAttribute("ERROR", "Name cannot be empty");
+
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
                 return;
             }
             
             if (password == null || password.trim().isEmpty()) {
+
                 request.setAttribute("error", "Password cannot be empty");
+
+                request.setAttribute("ERROR", "Password cannot be empty");
+
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
                 return;
             }
 
             if (!password.equals(confirm)) {
+
                 request.setAttribute("error", "Confirm password is not correct");
+
+                request.setAttribute("ERROR", "Confirm password is not correct");
+
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
                 return;
             }
@@ -75,12 +91,20 @@ public class ChangeProfileController extends HttpServlet {
                 request.setAttribute("msg", "Profile updated successfully");
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
             } else {
+
                 request.setAttribute("error", "Update failed. Please try again.");
+
+                request.setAttribute("ERROR", "Update failed. Please try again.");
+
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace(); // For debugging
+
             request.setAttribute("error", "Something went wrong: " + e.getMessage());
+
+            request.setAttribute("ERROR", "Something went wrong: " + e.getMessage());
+
             request.getRequestDispatcher("mistake.jsp").forward(request, response);
         }
     }

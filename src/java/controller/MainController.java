@@ -30,6 +30,9 @@ public class MainController extends HttpServlet {
                 case "Logout":
                     url = "LogoutController";
                     break;
+                case "ChangeProfile":
+                    url = "ChangeProfileController";
+                    break;
                 case "search":
                     url = "SearchBookController";
                     break;
@@ -50,6 +53,15 @@ public class MainController extends HttpServlet {
                     break;
                 case "Remove":
                     url = "RemoveCartController";
+                    break;
+                case "Borrow":
+                    url = "BorrowBookController";
+                    break;
+                case "Return":
+                    url = "ReturnBookController";
+                    break;
+                case "BorrowHistory":
+                    url = "BorrowHistoryController";
                     break;
                 default:
                     throw new AssertionError();

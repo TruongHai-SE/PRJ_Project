@@ -25,6 +25,7 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpServletResponseWrapper;
 
+
 /**
  *
  * @author xuann
@@ -148,23 +149,23 @@ public class RegisterFilter implements Filter {
             
             // kiem tra ten dang nhap
             if (username == null || username.trim().isEmpty()){
-                request.setAttribute("error", "username can not empty");
+                request.setAttribute("ERROR", "username can not empty");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             
             if (email == null || email.trim().isEmpty()){
-                request.setAttribute("error", "email can not empty");
+                request.setAttribute("ERROR", "email can not empty");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             if (!confirm.equalsIgnoreCase(password)){
-                request.setAttribute("error", "The password and the confirm does not match!");
+                request.setAttribute("ERROR", "The password and the confirm does not match!");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
             if (password != null || password.length() <= 6){
-                request.setAttribute("error", "The password need to higher 6 character");
+                request.setAttribute("ERROR", "The password need to higher 6 character");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
                 return;
             }
