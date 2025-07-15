@@ -18,7 +18,7 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                url = "AdvertisementController";
+                url = "HomeController";
             }
             switch (action) {
                 case "Login":

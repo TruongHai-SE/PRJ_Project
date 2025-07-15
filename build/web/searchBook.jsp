@@ -249,7 +249,8 @@
                                         <a href="MainController?action=BookDetail&bookId=${book.id}">
                                             ${book.title}
                                         </a>
-                                    </div>                                <div class="book-details"><strong>Tác giả:</strong> ${book.author}</div>
+                                    </div>                               
+                                    <div class="book-details"><strong>Tác giả:</strong> ${book.author}</div>
                                     <div class="book-details"><strong>Thể loại:</strong> ${book.category}</div>
                                     <div class="book-details">
                                         <strong>Số lượng còn lại:</strong> 
