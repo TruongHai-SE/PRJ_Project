@@ -24,15 +24,12 @@
 
         <div class="container text-center mt-3">
             <c:choose>
-                <c:when test="${not empty sessionScope.loginedUser && empty sessionScope.welcomeShown}">
-                    <h2>Welcome, ${sessionScope.loginedUser.name}!</h2>
-                    <p>Your email: ${sessionScope.loginedUser.email}</p>
-                    <%
-                        session.setAttribute("welcomeShown", true);
-                    %>
-                </c:when>
-
                 <c:when test="${not empty sessionScope.loginedUser}">
+                    <c:if test="${empty sessionScope.welcomeShown}">
+                        <h2>Welcome, ${sessionScope.loginedUser.name}!</h2>
+                        <p>Your email: ${sessionScope.loginedUser.email}</p>
+                        <c:set var="welcomeShown" value="true" scope="session" />
+                    </c:if>
                 </c:when>
 
                 <c:otherwise>

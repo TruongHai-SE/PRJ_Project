@@ -11,6 +11,7 @@ import java.util.Date;
  * @author ADMIN
  */
 public class BorrowRecord {
+    private String prefixedId;
     private int id;
     private int userId;
     private int bookId;
@@ -19,11 +20,14 @@ public class BorrowRecord {
     private Date dueDate;
     private Date returnDate;
     private String status;
+    private String requestType;
 
     public BorrowRecord() {
     }
-
+    
+    //constructor cho BorrowRecord
     public BorrowRecord(int id, int userId, int bookId, String bookTitle, Date borrowDate, Date dueDate, Date returnDate, String status) {
+        this.prefixedId = "RC-" + id;
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;
@@ -32,6 +36,14 @@ public class BorrowRecord {
         this.dueDate = dueDate;
         this.returnDate = returnDate;
         this.status = status;
+        this.requestType = null;
+    }
+    
+    //constructor cho BookRequest
+    public BorrowRecord(int id, int userId, int bookId, String bookTitle, Date borrowDate, Date dueDate, Date returnDate, String status, String requestType) {
+        this(id, userId, bookId, bookTitle, borrowDate, dueDate, returnDate, status);
+        this.prefixedId = "RQ-" + id;
+        this.requestType = requestType;
     }
 
     public int getId() {
@@ -40,6 +52,10 @@ public class BorrowRecord {
 
     public int getUserId() {
         return userId;
+    }
+
+    public String getPrefixedId() {
+        return prefixedId;
     }
 
     public int getBookId() {
@@ -60,6 +76,10 @@ public class BorrowRecord {
 
     public Date getReturnDate() {
         return returnDate;
+    }
+
+    public String getRequestType() {
+        return requestType;
     }
 
     public String getStatus() {
@@ -86,6 +106,10 @@ public class BorrowRecord {
         this.borrowDate = borrowDate;
     }
 
+    public void setPrefixedId(String prefixedId) {
+        this.prefixedId = prefixedId;
+    }
+
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
@@ -96,6 +120,10 @@ public class BorrowRecord {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setRequestType(String requestType) {
+        this.requestType = requestType;
     }
 
     

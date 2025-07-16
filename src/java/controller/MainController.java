@@ -19,52 +19,53 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = "AdvertisementController";
-            }
-            switch (action) {
-                case "Login":
-                    url = "LoginController";
-                    break;
-                case "register":
-                    url = "RegisterController";
-                    break;
-                case "Logout":
-                    url = "LogoutController";
-                    break;
-                case "ChangeProfile":
-                    url = "ChangeProfileController";
-                    break;
-                case "search":
-                    url = "SearchBookController";
-                    break;
-                case "BookDetail":
-                    url = "BookDetailController";
-                    break;
-                case "Delete":
-                    url = "DeleteController";
-                    break;
-                case "AddHouse":
-                    url = "AddBookController";
-                    break;
+            } else {
+                switch (action) {
+                    case "Login":
+                        url = "LoginController";
+                        break;
+                    case "register":
+                        url = "RegisterController";
+                        break;
+                    case "Logout":
+                        url = "LogoutController";
+                        break;
+                    case "ChangeProfile":
+                        url = "ChangeProfileController";
+                        break;
+                    case "search":
+                        url = "SearchBookController";
+                        break;
+                    case "BookDetail":
+                        url = "BookDetailController";
+                        break;
+                    case "Delete":
+                        url = "DeleteController";
+                        break;
+                    case "AddHouse":
+                        url = "AddBookController";
+                        break;
 //                case "ViewCart":
 //                    url = "ViewCartController";
 //                    break;
-                case "AddToCart":
-                    url = "AddtoCartController";
-                    break;
-                case "Remove":
-                    url = "RemoveCartController";
-                    break;
-                case "Borrow":
-                    url = "BorrowBookController";
-                    break;
-                case "Return":
-                    url = "ReturnBookController";
-                    break;
-                case "BorrowHistory":
-                    url = "BorrowHistoryController";
-                    break;
-                default:
-                    throw new AssertionError();
+                    case "AddToCart":
+                        url = "AddtoCartController";
+                        break;
+                    case "Remove":
+                        url = "RemoveCartController";
+                        break;
+                    case "Borrow":
+                        url = "BorrowBookController";
+                        break;
+                    case "Return":
+                        url = "ReturnBookController";
+                        break;
+                    case "BorrowHistory":
+                        url = "BorrowHistoryController";
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());
