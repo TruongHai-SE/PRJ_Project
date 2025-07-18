@@ -46,6 +46,62 @@
         <servlet-name>BorrowHistoryController</servlet-name>
         <servlet-class>controller.BorrowHistoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SystemConfigListController</servlet-name>
+        <servlet-class>controller.SystemConfigListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSystemConfigController</servlet-name>
+        <servlet-class>controller.UpdateSystemConfigController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteSystemConfigController</servlet-name>
+        <servlet-class>controller.DeleteSystemConfigController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSystemConfigController</servlet-name>
+        <servlet-class>controller.AddSystemConfigController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountListController</servlet-name>
+        <servlet-class>controller.AccountListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddBookController</servlet-name>
+        <servlet-class>controller.AddBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookListController</servlet-name>
+        <servlet-class>controller.BookListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteBookController</servlet-name>
+        <servlet-class>controller.DeleteBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchByEmailController</servlet-name>
+        <servlet-class>controller.SearchByEmailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateBookController</servlet-name>
+        <servlet-class>controller.UpdateBookController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStatusController</servlet-name>
+        <servlet-class>controller.UpdateStatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <servlet-class>controller.DeleteAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <servlet-class>controller.UpdateAccountController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddAccountController</servlet-name>
+        <servlet-class>controller.AddAccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
@@ -90,6 +146,62 @@
     <servlet-mapping>
         <servlet-name>BorrowHistoryController</servlet-name>
         <url-pattern>/BorrowHistoryController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SystemConfigListController</servlet-name>
+        <url-pattern>/SystemConfigListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSystemConfigController</servlet-name>
+        <url-pattern>/UpdateSystemConfigController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSystemConfigController</servlet-name>
+        <url-pattern>/DeleteSystemConfigController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSystemConfigController</servlet-name>
+        <url-pattern>/AddSystemConfigController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountListController</servlet-name>
+        <url-pattern>/AccountListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddBookController</servlet-name>
+        <url-pattern>/AddBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookListController</servlet-name>
+        <url-pattern>/BookListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteBookController</servlet-name>
+        <url-pattern>/DeleteBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchByEmailController</servlet-name>
+        <url-pattern>/SearchByEmailController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBookController</servlet-name>
+        <url-pattern>/UpdateBookController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusController</servlet-name>
+        <url-pattern>/UpdateStatusController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteAccountController</servlet-name>
+        <url-pattern>/DeleteAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAccountController</servlet-name>
+        <url-pattern>/UpdateAccountController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddAccountController</servlet-name>
+        <url-pattern>/AddAccountController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

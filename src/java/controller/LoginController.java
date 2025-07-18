@@ -42,13 +42,12 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("loginedUser", user);
                 session.setAttribute("welcomeShown", false);
                 request.setAttribute("msg", "Login successful");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
                 
-//                if(user.getRole().equalsIgnoreCase("admin")){
-//                    response.sendRedirect("AdminDashboard.jsp");
-//                }else{
-//                    response.sendRedirect("UserDashboard.jsp");
-//                }
+                if(user.getRole().equalsIgnoreCase("admin")){
+                    response.sendRedirect("AdminDashboard.jsp");
+                }else{
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
             } else {
                 request.setAttribute("ERROR", "Email or password is invalid");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

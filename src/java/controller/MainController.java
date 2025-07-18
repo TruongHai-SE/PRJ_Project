@@ -2,11 +2,13 @@ package controller;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
+@MultipartConfig
 public class MainController extends HttpServlet {
 
     private static final String HOME_PAGE = "index.jsp";
@@ -62,6 +64,48 @@ public class MainController extends HttpServlet {
                         break;
                     case "BorrowHistory":
                         url = "BorrowHistoryController";
+                        break;
+                    case "systemConfig":
+                        url = "SystemConfigListController";
+                        break;
+                    case "booklist":
+                        url = "BookListController";
+                        break;
+                    case "accountList":
+                        url = "AccountListController";
+                        break;
+                    case "updateSystemConfig":
+                        url = "UpdateSystemConfigController";
+                        break;
+                    case "deleteSystemConfig":
+                        url = "DeleteSystemConfigController";
+                        break;
+                    case "addSystemConfig":
+                        url = "AddSystemConfigController";
+                        break;
+                    case "deleteBook":
+                        url = "DeleteBookController";
+                        break;
+                    case "updateBook":
+                        url = "UpdateBookController";
+                        break;
+                    case "addBook":
+                        url = "AddBookController";
+                        break;
+                    case "searchByEmail":
+                        url = "SearchByEmailController";
+                        break;
+                    case "toggleStatus":
+                        url = "UpdateStatusController";
+                        break;
+                    case "deleteAccount":
+                        url = "DeleteAccountController";
+                        break;
+                    case "updateAccount":
+                        url = "UpdateAccountController";
+                        break;
+                    case "addAccount":
+                        url = "AddAccountController";
                         break;
                     default:
                         throw new AssertionError();
