@@ -1,3 +1,4 @@
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
@@ -12,7 +13,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
             .header {
-                background-color: white;
+                background-color: #ffcc99;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 padding: 8px 30px;
                 z-index: 1000;

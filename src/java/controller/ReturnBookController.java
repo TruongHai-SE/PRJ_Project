@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
+import dao.BookDAO;
 import dao.BorrowDAO;
+import dto.Book;
 import dto.User;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -14,12 +15,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-
 /**
  *
  * @author ADMIN
  */
-
 public class ReturnBookController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -30,11 +29,12 @@ public class ReturnBookController extends HttpServlet {
         User user = (User) session.getAttribute("loginedUser");
 
         if (user == null) {
-            response.sendRedirect("login.jsp");
+            request.setAttribute("msg", "Vui lòng đăng nhập để trả sách");
+            request.getRequestDispatcher("login.jsp").forward(request, response);
             return;
         }
 
-        int userId = user.getId(); 
+        int userId = user.getId();
         String bookIdStr = request.getParameter("bookId");
 
         if (bookIdStr == null || bookIdStr.trim().isEmpty()) {
@@ -56,6 +56,7 @@ public class ReturnBookController extends HttpServlet {
         } catch (NumberFormatException e) {
             request.setAttribute("ERROR", "ID sách không hợp lệ.");
         }
+
         request.getRequestDispatcher("BorrowHistoryController").forward(request, response);
     }
 

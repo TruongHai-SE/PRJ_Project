@@ -5,7 +5,6 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
 public class MainController extends HttpServlet {
 
@@ -18,7 +17,7 @@ public class MainController extends HttpServlet {
         try {
             String action = request.getParameter("action");
             if (action == null) {
-                url = "AdvertisementController";
+                url = "HomeController";
             } else {
                 switch (action) {
                     case "Login":
@@ -42,7 +41,7 @@ public class MainController extends HttpServlet {
                     case "Delete":
                         url = "DeleteController";
                         break;
-                    case "AddHouse":
+                    case "AddBook":
                         url = "AddBookController";
                         break;
 //                case "ViewCart":

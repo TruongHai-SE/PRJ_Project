@@ -20,20 +20,9 @@ body.register-page {
   animation: fadeIn 0.7s ease;
 }
 
-/*body::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: url("https://images.pexels.com/photos/1525041/pexels-photo-1525041.jpeg");
-  background-position: center;
-  background-size: cover;
-  z-index: -1;
-}*/
-
 .wrapper {
   width: 400px;
-  margin: 0 auto; 
+  margin: 0 auto;
   margin-top: 100px;
   border-radius: 15px;
   padding: 40px 40px 20px 40px;
@@ -55,6 +44,7 @@ body.register-page {
   color: #ffdde1;
   text-decoration: none;
 }
+
 .wrapper a:hover {
   text-decoration: underline;
 }
@@ -120,6 +110,7 @@ h2 {
   display: flex;
   align-items: center;
 }
+
 .forget label p {
   margin-left: 8px;
 }
@@ -141,7 +132,7 @@ h2 {
   transition: all 0.3s ease;
 }
 
-button:hover {
+.button:hover {
   color: #000000;
   background: rgba(255, 255, 255, 0.2);
   border-color: #ffffff;
@@ -153,7 +144,19 @@ button:hover {
   color: #ffffff;
 }
 
-
 html, body {
   overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+      width: 90%;
+      margin: 20px auto;
+  }
+  .input-field input {
+      font-size: 14px;
+  }
+  h2 {
+      font-size: 1.8rem;
+  }
 }

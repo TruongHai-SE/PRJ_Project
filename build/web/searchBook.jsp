@@ -6,7 +6,6 @@
         <meta charset="UTF-8">
         <title>Kết quả tìm kiếm sách</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/style.css">
         <style>
             body {
                 margin-top: 100px !important;
@@ -207,7 +206,6 @@
         <div class="search-results">
             <div class="results-header">
                 <h2>Kết quả tìm kiếm</h2>
-                <!-- Debug info -->
                 <small style="color: #666;">
                     Search key: ${requestScope.searchKey} | 
                     Results count: ${requestScope.RESULT != null ? requestScope.RESULT.size() : 0}
@@ -249,7 +247,8 @@
                                         <a href="MainController?action=BookDetail&bookId=${book.id}">
                                             ${book.title}
                                         </a>
-                                    </div>                                <div class="book-details"><strong>Tác giả:</strong> ${book.author}</div>
+                                    </div>                               
+                                    <div class="book-details"><strong>Tác giả:</strong> ${book.author}</div>
                                     <div class="book-details"><strong>Thể loại:</strong> ${book.category}</div>
                                     <div class="book-details">
                                         <strong>Số lượng còn lại:</strong> 

@@ -50,38 +50,37 @@
                             <tr>
                                 <td>${loop.index + 1}</td>
                                 <td>${record.bookTitle}</td>
-
-                                <c:if test="${record.status == 'pending'}">
-                                    <td colspan="3" class="text-center text-muted">Đang xử lý...</td>
-                                </c:if>
-
-                                <c:if test="${record.status != 'pending'}">
-                                    <td>${record.borrowDate}</td>
-                                    <td>${record.dueDate}</td>
-                                    <td>
-                                        <c:choose>
-                                            <c:when test="${not empty record.returnDate}">
-                                                ${record.returnDate}
-                                            </c:when>
-                                            <c:otherwise>---</c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                </c:if>                                
+                                <td>${record.borrowDate}</td>
+                                <td>${record.dueDate}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${not empty record.returnDate}">
+                                            ${record.returnDate}
+                                        </c:when>
+                                        <c:otherwise>---</c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>${record.status}</td>
                                 <td>
-                                    <c:if test="${record.status == 'borrowed'}">
-                                        <form action="MainController" method="post">
-                                            <input type="hidden" name="bookId" value="${record.bookId}" />
-                                            <button type="submit" name="action" value="Return" class="btn btn-primary">Return</button>
-                                        </form>
-                                    </c:if>
                                     <c:choose>
-                                        <c:when test="${record.status == 'pending' && record.requestType == 'borrow'}">
-                                            <span class="text-warning fw-bold">Chờ duyệt đơn mượn</span>
+                                        <c:when test="${record.status == 'borrowed'}">
+                                            <form action="MainController" method="post">
+                                                <input type="hidden" name="bookId" value="${record.bookId}" />
+                                                <button type="submit" name="action" value="Return" class="btn btn-primary">Return</button>
+                                            </form>
                                         </c:when>
-                                        <c:when test="${record.status == 'pending' && record.requestType == 'return'}">
-                                            <span class="text-warning fw-bold">Chờ duyệt đơn trả</span>
+                                        <c:when test="${record.status == 'returned'}">
+                                            <form action="MainController" method="post">
+                                                <input type="hidden" name="bookId" value="${record.bookId}" />
+                                                <input type="hidden" name="source" value="borrowHistory" />
+                                                <button type="submit" name="action" value="Borrow" class="btn btn-primary" onclick="return confirm('Bạn có muốn mượn lại cuốn sách này?');">Mượn lại</button>
+                                            </form>
                                         </c:when>
+                                        <c:when test="${record.status == 'overdue'}">
+                                            <span class="text-danger fw-bold">Quá hạn</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                        </c:otherwise>
                                     </c:choose>
                                 </td>
                             </tr>

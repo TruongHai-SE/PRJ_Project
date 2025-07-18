@@ -1,10 +1,9 @@
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package myListener;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,37 +15,32 @@ import jakarta.servlet.http.HttpSession;
 
 /**
  *
- * @author ADMIN
+ * @author xuann
  */
-public class LogoutController extends HttpServlet {
-   
-    
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        try {
-            HttpSession session = request.getSession();
-            session.invalidate();
-            response.sendRedirect("index.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+public class LoginListener extends HttpServlet {
 
-   
+    public void processRequest(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException{
+        request.setCharacterEncoding("UTF-8");
+
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request,response);       
+        response.setCharacterEncoding("UTF-8");
+   
     } 
 
-    
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        processRequest(request,response);                  
+        response.setCharacterEncoding("UTF-8");
+ 
     }
 
-   
+
     @Override
     public String getServletInfo() {
         return "Short description";

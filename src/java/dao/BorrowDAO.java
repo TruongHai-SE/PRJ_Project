@@ -29,8 +29,13 @@ public class BorrowDAO {
                 ResultSet rs = checkSt.executeQuery();
 
                 if (rs.next() && rs.getInt("available_copies") > 0) {
-                    String sql = "INSERT INTO book_requests (user_id, book_id, request_date, status, request_type) "
-                            + "VALUES (?, ?, GETDATE(), 'pending', 'borrow')";
+                    String updateSql = "UPDATE books SET available_copies = available_copies - 1 WHERE id = ?";
+                    PreparedStatement updateSt = cn.prepareStatement(updateSql);
+                    updateSt.setInt(1, bookId);
+                    updateSt.executeUpdate();
+                    
+                    String sql = "INSERT INTO book_requests (user_id, book_id, request_date, status) "
+                            + "VALUES (?, ?, GETDATE(), 'pending')";
                     PreparedStatement st = cn.prepareStatement(sql);
                     st.setInt(1, userId);
                     st.setInt(2, bookId);
@@ -60,15 +65,15 @@ public class BorrowDAO {
                 // Kiểm tra xem đã có request trả chưa để tránh duplicate
                 String checkExisting = "SELECT id FROM book_requests "
                         + "WHERE user_id = ? AND book_id = ? "
-                        + "AND request_type = 'return' AND status = 'pending'";
+                        + "AND status = 'pending'";
                 PreparedStatement checkSt = cn.prepareStatement(checkExisting);
                 checkSt.setInt(1, userId);
                 checkSt.setInt(2, bookId);
                 ResultSet rs = checkSt.executeQuery();
 
                 if (!rs.next()) {
-                    String sql = "INSERT INTO book_requests (user_id, book_id, request_date, status, request_type) "
-                            + "VALUES (?, ?, GETDATE(), 'pending', 'return')";
+                    String sql = "INSERT INTO book_requests (user_id, book_id, request_date, status) "
+                            + "VALUES (?, ?, GETDATE(), 'pending')";
                     PreparedStatement st = cn.prepareStatement(sql);
                     st.setInt(1, userId);
                     st.setInt(2, bookId);
@@ -121,29 +126,6 @@ public class BorrowDAO {
                     );
                     result.add(record);
                 }
-
-                String sql2 = "SELECT br.id, br.user_id, br.book_id, b.title, "
-                        + "NULL AS borrow_date, NULL AS due_date, NULL AS return_date, br.status, br.request_type "
-                        + "FROM book_requests br "
-                        + "JOIN books b ON br.book_id = b.id "
-                        + "WHERE br.user_id = ? AND br.status = 'pending' AND br.request_type = 'borrow'";
-                PreparedStatement st2 = cn.prepareStatement(sql2);
-                st2.setInt(1, userId);
-                ResultSet rs2 = st2.executeQuery();
-                while (rs2.next()) {
-                    BorrowRecord record = new BorrowRecord(
-                            rs2.getInt("id"),
-                            rs2.getInt("user_id"),
-                            rs2.getInt("book_id"),
-                            rs2.getString("title"),
-                            null,
-                            null,
-                            null,
-                            rs2.getString("status"),
-                            rs2.getString("request_type")
-                    );
-                    result.add(record);
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,4 +141,27 @@ public class BorrowDAO {
         return result;
     }
 
+    public boolean hasPendingBorrow(int userId, int bookId) {
+        Connection cn = null;
+        try {
+            cn = DBUtils.getConnection();
+            if (cn != null) {
+                String sql = "SELECT COUNT(*) "
+                        + "FROM book_requests "
+                        + "WHERE user_id = ? AND book_id = ? AND status = 'pending'";
+                PreparedStatement ps = cn.prepareStatement(sql);
+                ps.setInt(1, userId);
+                ps.setInt(2, bookId);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    if (rs.getInt(1) > 0) {
+                        return true; 
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -107,7 +107,9 @@ public class BookDAO {
             e.printStackTrace();
         } finally {
             try {
-                if (cn != null) cn.close();
+                if (cn != null) {
+                    cn.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -151,5 +153,55 @@ public class BookDAO {
         }
         return result;
 
+    }
+
+    public ArrayList<Book> getNewestImportedBook(int limit) {
+        ArrayList<Book> listBook = new ArrayList<>();
+        Connection conn = null;
+
+        try {
+            conn = DBUtils.getConnection();
+            if (conn != null) {
+                String sql = "SELECT TOP " + limit + " b.* "
+                        + "FROM books b "
+                        + "JOIN inventory_Log l ON b.id = l.book_id "
+                        + "ORDER BY l.import_date DESC";
+
+                PreparedStatement ps = conn.prepareStatement(sql);
+                //ps.setInt(1, limit);
+
+                ResultSet table = ps.executeQuery();
+                while (table.next()) {
+                    Book b = new Book(
+                            table.getInt("id"),
+                            table.getString("title"),
+                            table.getString("author"),
+                            table.getString("isbn"),
+                            table.getString("category"),
+                            table.getInt("published_year"),
+                            table.getInt("total_copies"),
+                            table.getInt("available_copies"),
+                            table.getString("status"),
+                            table.getString("url"),
+                            table.getString("description")
+                    );
+                    listBook.add(b);
+                }
+                ps.close();
+                table.close();
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) {
+                    conn.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return listBook;
     }
 }

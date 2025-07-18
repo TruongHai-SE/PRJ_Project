@@ -21,12 +21,10 @@ public class UserDAO {
 
     public User getUserByEmail(String email) {
         User result = null;
-        //buoc 1: ket noi
         Connection cn = null;
         try {
             cn = DBUtils.getConnection();
             if (cn != null) {
-                //b2: viet query va execute
                 String sql = "select id,name,email,password,role,status\n"
                         + "from dbo.users\n"
                         + "where email='" + email + "'";

@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller;
 
 import dao.BookDAO;
@@ -34,29 +33,63 @@ public class BorrowBookController extends HttpServlet {
 
             User user = (User) session.getAttribute("loginedUser");
             String bookIdStr = request.getParameter("bookId");
+            String source = request.getParameter("source");
 
             if (bookIdStr == null || bookIdStr.trim().isEmpty()) {
                 request.setAttribute("ERROR", "ID sách không hợp lệ");
-                request.getRequestDispatcher("mistake.jsp").forward(request, response);
+                if ("borrowHistory".equals(source)) {
+                    BorrowDAO borrowDAO = new BorrowDAO();
+                    request.setAttribute("borrowHistory", borrowDAO.getBorrowHistory(user.getId()));
+                    request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("mistake.jsp").forward(request, response);
+                }
                 return;
             }
 
             int bookId = Integer.parseInt(bookIdStr);
             BorrowDAO borrowDAO = new BorrowDAO();
             BookDAO bookDAO = new BookDAO();
+
             if (bookDAO.getBook(bookId) == null) {
                 request.setAttribute("ERROR", "Sách không tồn tại");
-                request.getRequestDispatcher("mistake.jsp").forward(request, response);
+                if ("borrowHistory".equals(source)) {
+                    request.setAttribute("borrowHistory", borrowDAO.getBorrowHistory(user.getId()));
+                    request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("mistake.jsp").forward(request, response);
+                }
+                return;
+            }
+
+            if (borrowDAO.hasPendingBorrow(user.getId(), bookId)) {
+                request.setAttribute("ERROR", "Bạn đã có đơn mượn đang chờ hoặc đang mượn cuốn sách này.");
+                if ("borrowHistory".equals(source)) {
+                    request.setAttribute("borrowHistory", borrowDAO.getBorrowHistory(user.getId()));
+                    request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("bookDetail.jsp?bookId=" + bookId).forward(request, response);
+                }
                 return;
             }
 
             boolean success = borrowDAO.borrowBook(user.getId(), bookId);
             if (success) {
-                request.setAttribute("msg", "Mượn sách thành công");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+                request.setAttribute("msg", "Yêu cầu mượn sách đã được gửi, đang chờ duyệt.");
+                if ("borrowHistory".equals(source)) {
+                    request.setAttribute("borrowHistory", borrowDAO.getBorrowHistory(user.getId()));
+                    request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                }
             } else {
-                request.setAttribute("ERROR", "Không thể mượn sách. Vui lòng thử lại.");
-                request.getRequestDispatcher("bookDetail.jsp?bookId=" + bookId).forward(request, response);
+                request.setAttribute("ERROR", "Hiện không còn sách khả dụng. Vui lòng thử lại sau.");
+                if ("borrowHistory".equals(source)) {
+                    request.setAttribute("borrowHistory", borrowDAO.getBorrowHistory(user.getId()));
+                    request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+                } else {
+                    request.getRequestDispatcher("bookDetail.jsp?bookId=" + bookId).forward(request, response);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

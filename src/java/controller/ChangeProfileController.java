@@ -23,6 +23,7 @@ public class ChangeProfileController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
         
         try {
@@ -52,26 +53,25 @@ public class ChangeProfileController extends HttpServlet {
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
                 return;
             }
-            
-            if (password == null || password.trim().isEmpty()) {
-                request.setAttribute("ERROR", "Password cannot be empty");
-                request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
-                return;
-            }
 
-            if (!password.equals(confirm)) {
-                request.setAttribute("ERROR", "Confirm password is not correct");
-                request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
-                return;
+            // Nếu không nhập mật khẩu, giữ nguyên mật khẩu hiện tại
+            String newPassword = user.getPassword();
+            if (password != null && !password.trim().isEmpty()) {
+                if (!password.equals(confirm)) {
+                    request.setAttribute("ERROR", "Confirm password is not correct");
+                    request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
+                    return;
+                }
+                newPassword = password;
             }
 
             UserDAO d = new UserDAO();
-            int result = d.updateUser(user.getId(), name.trim(), password);
+            int result = d.updateUser(user.getId(), name.trim(), newPassword);
 
             if (result == 1) {
                 user.setName(name.trim());
-                user.setPassword(password);
-                session.setAttribute("user", user);
+                user.setPassword(newPassword);
+                session.setAttribute("loginedUser", user);
                 request.setAttribute("msg", "Profile updated successfully");
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
             } else {
@@ -79,7 +79,7 @@ public class ChangeProfileController extends HttpServlet {
                 request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
             }
         } catch (Exception e) {
-            e.printStackTrace(); // For debugging
+            e.printStackTrace();
             request.setAttribute("ERROR", "Something went wrong: " + e.getMessage());
             request.getRequestDispatcher("mistake.jsp").forward(request, response);
         }

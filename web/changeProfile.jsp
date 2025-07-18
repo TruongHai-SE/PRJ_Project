@@ -1,6 +1,10 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="f" %>
+<c:if test="${empty sessionScope.loginedUser}">
+    <c:set var="ERROR" value="Please login first" scope="request"/>
+    <jsp:forward page="login.jsp"/>
+</c:if>
 
 <!DOCTYPE html>
 <html>
@@ -15,7 +19,7 @@
     <jsp:include page="header.jsp" />
 
     <div class="wrapper">
-        <form class="form-register" action="MainController" method="post">
+        <form class="form-register" action="MainController" method="post" accept-charset="UTF-8">
             <h2>Change Profile</h2>
 
             <c:if test="${not empty requestScope.ERROR}">
@@ -38,12 +42,12 @@
             </div>
 
             <div class="input-field">
-                <input type="password" name="password" required placeholder=" ">
-                <label>Enter new password</label>
+                <input type="password" name="password" placeholder=" ">
+                <label>Enter new password (optional)</label>
             </div>
 
             <div class="input-field">
-                <input type="password" name="confirm" required placeholder=" ">
+                <input type="password" name="confirm" placeholder=" ">
                 <label>Confirm password</label>
             </div>
 
