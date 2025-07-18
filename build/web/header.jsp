@@ -13,7 +13,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <style>
             .header {
-                background-color: #ffcc99;
+                background-color: #ffffff;
+                /*                #ffcc99*/
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
                 padding: 8px 30px;
                 z-index: 1000;
@@ -26,7 +27,7 @@
                 flex-grow: 1;
                 display: flex;
                 max-width: 600px;
-                margin: 0 150px;
+                margin: 0 130px;
             }
 
             .search-box input {
@@ -91,11 +92,14 @@
 
                 <div class="dropdown me-2">
                     <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Open Menu">
-                        <i class="fas fa-th-large"></i>
+                        <i class="fas fa-th-large"></i> Category
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Danh mục 1</a></li>
-                        <li><a class="dropdown-item" href="#">Danh mục 2</a></li>
+                        <li><a class="dropdown-item" href="MainController?action=search&searchKey=Programming">Programming</a></li>
+                        <li><a class="dropdown-item" href="MainController?action=search&searchKey=Software Engineering">Software Engineering</a></li>
+                        <li><a class="dropdown-item" href="MainController?action=search&searchKey=Truyện Ngắn">Truyện Ngắn</a></li>
+                        <li><a class="dropdown-item" href="MainController?action=search&searchKey=Web Design">Web Design</a></li>
+
                     </ul>
                 </div>
 
@@ -108,6 +112,7 @@
 
             <!-- Icons -->
             <div class="d-flex align-items-center">
+
                 <a href="#" class="icon-link" aria-label="Notifications">
                     <i class="fas fa-bell"></i>
                     Notification

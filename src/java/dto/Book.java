@@ -35,6 +35,20 @@ public class Book {
         this.description = description;
     }
 
+    public Book(String title, String author, String isbn, String category, int published_year, int total_copies, int available_copies, String status, String url, String description) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+        this.category = category;
+        this.published_year = published_year;
+        this.total_copies = total_copies;
+        this.available_copies = available_copies;
+        this.status = status;
+        this.url = url;
+        this.description = description;
+    }
+    
+
     public Book() {
     }
 

@@ -2,11 +2,13 @@ package controller;
 
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
 
+@MultipartConfig
+ 
 public class MainController extends HttpServlet {
 
     private static final String HOME_PAGE = "index.jsp";
@@ -19,52 +21,56 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             if (action == null) {
                 url = "HomeController";
-            }
-            switch (action) {
-                case "Login":
-                    url = "LoginController";
-                    break;
-                case "register":
-                    url = "RegisterController";
-                    break;
-                case "Logout":
-                    url = "LogoutController";
-                    break;
-                case "ChangeProfile":
-                    url = "ChangeProfileController";
-                    break;
-                case "search":
-                    url = "SearchBookController";
-                    break;
-                case "BookDetail":
-                    url = "BookDetailController";
-                    break;
-                case "Delete":
-                    url = "DeleteController";
-                    break;
-                case "AddHouse":
-                    url = "AddBookController";
-                    break;
+            } else {
+                switch (action) {
+                    case "Login":
+                        url = "LoginController";
+                        break;
+                    case "register":
+                        url = "RegisterController";
+                        break;
+                    case "Logout":
+                        url = "LogoutController";
+                        break;
+                    case "ChangeProfile":
+                        url = "ChangeProfileController";
+                        break;
+                    case "search":
+                        url = "SearchBookController";
+                        break;
+                    case "BookDetail":
+                        url = "BookDetailController";
+                        break;
+                    case "Delete":
+                        url = "DeleteController";
+                        break;
+                    case "AddHouse":
+                        url = "AddBookController";
+                        break;
 //                case "ViewCart":
 //                    url = "ViewCartController";
 //                    break;
-                case "AddToCart":
-                    url = "AddtoCartController";
-                    break;
-                case "Remove":
-                    url = "RemoveCartController";
-                    break;
-                case "Borrow":
-                    url = "BorrowBookController";
-                    break;
-                case "Return":
-                    url = "ReturnBookController";
-                    break;
-                case "BorrowHistory":
-                    url = "BorrowHistoryController";
-                    break;
-                default:
-                    throw new AssertionError();
+                    case "AddToCart":
+                        url = "AddtoCartController";
+                        break;
+                    case "Remove":
+                        url = "RemoveCartController";
+                        break;
+                    case "Borrow":
+                        url = "BorrowBookController";
+                        break;
+                    case "Return":
+                        url = "ReturnBookController";
+                        break;
+                    case "BorrowHistory":
+                        url = "BorrowHistoryController";
+                        break;
+                    case "addBook":
+                        url = "AddBookController";
+                        break;
+                    default:
+                        throw new AssertionError();
+                }
             }
         } catch (Exception e) {
             log("Error at MainController: " + e.toString());

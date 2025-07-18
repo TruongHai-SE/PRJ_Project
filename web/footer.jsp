@@ -9,7 +9,7 @@
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-<footer class="bg-light py-4 border-top" style="background-color: buttonface !important;">
+<footer class="bg-light py-4 border-top" style="background-color: buttonface !important; margin-top: 40px">
   <div class="container">
     <div class="row align-items-center">
       <!-- Logo -->

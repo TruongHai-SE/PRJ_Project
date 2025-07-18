@@ -106,9 +106,36 @@ public class SearchBookController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
 
         response.setCharacterEncoding("UTF-8");
+        String title = request.getParameter("searchKey");
+
+        if (title != null && !title.isEmpty()) {
+
+            // create cookie and set time it alive
+//            cookies(request, response, title);
+            String encodedHistory = URLEncoder.encode(title, "UTF-8");
+            Cookie newCookie = new Cookie("searchHistory", encodedHistory);
+            newCookie.setMaxAge(86400 * 7);
+            response.addCookie(newCookie);
+
+            BookDAO d = new BookDAO();
+            ArrayList<Book> listBook = d.getBooksByTitle(title);
+
+            if (listBook.isEmpty()) {
+                request.setAttribute("MSG", "No results found");
+                request.setAttribute("searchKey", title);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                request.setAttribute("dropDownSearchList", listBook);
+                request.setAttribute("dropDownsearchKey", title);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+        } else {
+            request.setAttribute("MSG", "No input data");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 

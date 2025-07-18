@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class HomeController extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //adverisement
         request.setCharacterEncoding("UTF-8");
         Cookie[] cookies = request.getCookies();
         String currentSearch = null;
@@ -44,6 +45,7 @@ public class HomeController extends HttpServlet {
 
         }
 
+        //get newest imported book
         try {
             BookDAO dao = new BookDAO();
             ArrayList<Book> listNewestBook = new ArrayList<>();
@@ -54,6 +56,15 @@ public class HomeController extends HttpServlet {
             e.printStackTrace();
             request.setAttribute("error", "Có lỗi trong quá trình truy xuất dữ liệu từ database");
             request.getRequestDispatcher("misktake.jsp").forward(request, response);
+        }
+
+        // get all book
+        BookDAO dao = new BookDAO();
+        ArrayList<Book> allBooks = dao.getAllBook();
+        if (allBooks != null) {
+            request.setAttribute("allBooks", allBooks);
+        } else {
+            request.setAttribute("msg", "somethings wrong when get data from database");
         }
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
