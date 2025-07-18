@@ -8,12 +8,12 @@ package controller;
 import dao.BorrowDAO;
 import dto.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 
 /**
  *
@@ -25,38 +25,38 @@ public class ReturnBookController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession(false);
-            if (session == null || session.getAttribute("loginedUser") == null) {
-                request.setAttribute("ERROR", "Vui lòng đăng nhập trước khi trả sách");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
-                return;
-            }
 
-            User user = (User) session.getAttribute("loginedUser");
-            String bookIdStr = request.getParameter("bookId");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("loginedUser");
 
-            if (bookIdStr == null || bookIdStr.trim().isEmpty()) {
-                request.setAttribute("ERROR", "ID sách không hợp lệ");
-                request.getRequestDispatcher("mistake.jsp").forward(request, response);
-                return;
-            }
-
-            int bookId = Integer.parseInt(bookIdStr);
-            BorrowDAO borrowDAO = new BorrowDAO();
-            boolean success = borrowDAO.returnBook(user.getId(), bookId);
-            if (success) {
-                request.setAttribute("msg", "Trả sách thành công");
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            } else {
-                request.setAttribute("ERROR", "Không thể trả sách. Vui lòng kiểm tra lại.");
-                request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            request.setAttribute("ERROR", "Đã xảy ra lỗi: " + e.getMessage());
-            request.getRequestDispatcher("mistake.jsp").forward(request, response);
+        if (user == null) {
+            response.sendRedirect("login.jsp");
+            return;
         }
+
+        int userId = user.getId(); 
+        String bookIdStr = request.getParameter("bookId");
+
+        if (bookIdStr == null || bookIdStr.trim().isEmpty()) {
+            request.setAttribute("error", "Thiếu thông tin sách để trả.");
+            request.getRequestDispatcher("borrowHistory.jsp").forward(request, response);
+            return;
+        }
+
+        try {
+            int bookId = Integer.parseInt(bookIdStr);
+            BorrowDAO dao = new BorrowDAO();
+            boolean success = dao.returnBook(userId, bookId);
+
+            if (success) {
+                request.setAttribute("msg", "Yêu cầu trả sách đã được gửi. Vui lòng chờ admin duyệt.");
+            } else {
+                request.setAttribute("ERROR", "Bạn đã gửi yêu cầu trả sách cho cuốn này hoặc có lỗi xảy ra.");
+            }
+        } catch (NumberFormatException e) {
+            request.setAttribute("ERROR", "ID sách không hợp lệ.");
+        }
+        request.getRequestDispatcher("BorrowHistoryController").forward(request, response);
     }
 
     @Override
@@ -73,6 +73,6 @@ public class ReturnBookController extends HttpServlet {
 
     @Override
     public String getServletInfo() {
-        return "Handles book returning";
+        return "ReturnBookController handles return book requests by creating a pending return request.";
     }
 }

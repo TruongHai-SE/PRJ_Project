@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/web/searchBook.jsp</file>
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/src/java/controller/HomeController.java</file>
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/src/java/controller/MainController.java</file>
@@ -19,6 +20,14 @@
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/web/index.jsp</file>
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/web/css/style.css</file>
             <file>file:/D:/Semester4/PRJ301/SourceCode/New%20Folder/Project/web/addBook.jsp</file>
+=======
+            <file>file:/D:/PRJ301/LibraryManagementSystem/web/searchBook.jsp</file>
+            <file>file:/D:/PRJ301/LibraryManagementSystem/src/java/dao/BorrowDAO.java</file>
+            <file>file:/D:/PRJ301/LibraryManagementSystem/web/bookDetail.jsp</file>
+            <file>file:/D:/PRJ301/LibraryManagementSystem/web/borrowHistory.jsp</file>
+            <file>file:/D:/PRJ301/LibraryManagementSystem/src/java/dto/BorrowRecord.java</file>
+            <file>file:/D:/PRJ301/LibraryManagementSystem/src/java/controller/BorrowBookController.java</file>
+>>>>>>> origin/hariii
         </group>
     </open-files>
 </project-private>

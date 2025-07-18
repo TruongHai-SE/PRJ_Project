@@ -46,21 +46,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="record" items="${requestScope.borrowHistory}" varStatus="loop">
+                        <c:forEach var="record" items="${borrowHistory}" varStatus="loop">
                             <tr>
-                                <td>${loop.count}</td>
+                                <td>${loop.index + 1}</td>
                                 <td>${record.bookTitle}</td>
-                                <td>${record.borrowDate}</td>
-                                <td>${record.dueDate}</td>
-                                <td>${record.returnDate}</td>
+
+                                <c:if test="${record.status == 'pending'}">
+                                    <td colspan="3" class="text-center text-muted">Đang xử lý...</td>
+                                </c:if>
+
+                                <c:if test="${record.status != 'pending'}">
+                                    <td>${record.borrowDate}</td>
+                                    <td>${record.dueDate}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${not empty record.returnDate}">
+                                                ${record.returnDate}
+                                            </c:when>
+                                            <c:otherwise>---</c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </c:if>                                
                                 <td>${record.status}</td>
                                 <td>
                                     <c:if test="${record.status == 'borrowed'}">
                                         <form action="MainController" method="post">
-                                            <input type="hidden" name="bookId" value="${record.bookId}">
-                                            <input type="submit" name="action" value="Return" class="btn btn-primary">
+                                            <input type="hidden" name="bookId" value="${record.bookId}" />
+                                            <button type="submit" name="action" value="Return" class="btn btn-primary">Return</button>
                                         </form>
                                     </c:if>
+                                    <c:choose>
+                                        <c:when test="${record.status == 'pending' && record.requestType == 'borrow'}">
+                                            <span class="text-warning fw-bold">Chờ duyệt đơn mượn</span>
+                                        </c:when>
+                                        <c:when test="${record.status == 'pending' && record.requestType == 'return'}">
+                                            <span class="text-warning fw-bold">Chờ duyệt đơn trả</span>
+                                        </c:when>
+                                    </c:choose>
                                 </td>
                             </tr>
                         </c:forEach>

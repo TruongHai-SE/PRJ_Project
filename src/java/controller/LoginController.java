@@ -40,6 +40,7 @@ public class LoginController extends HttpServlet {
             if (user != null && "active".equalsIgnoreCase(user.getStatus())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("loginedUser", user);
+                session.setAttribute("welcomeShown", false);
                 request.setAttribute("msg", "Login successful");
                 request.getRequestDispatcher("index.jsp").forward(request, response);
                 
